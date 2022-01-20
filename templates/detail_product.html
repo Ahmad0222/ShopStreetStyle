@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %} Product | Shop Street Styles{% endblock %}
+{% block main %}
+    <main class="main">
+        <div class="container">
+            <div class="product_top">
+                <div class="modal_main">
+                    <div class="modal_img zoom-area">
+                        <div class="large"></div>
+                        <img src="{{ context.images.url }}" alt="" class="modal_img_it small">
+                    </div>
+                    <div class="modal_content">
+                        <div class="modal_product_code">{{ context.category }}</div>
+                        <div class="top_product">
+                            <div class="modal_product_name" id="name{{ context.id }}">{{ context.name }}</div>
+                            <div class="modal_product-price"><div>Rs.&nbsp</div>
+                                <div class="prices" id="price{{ context.id }}">{{ context.price }}</div>
+                            </div>
+                        </div>
+                        <div class="modal_line"></div>
+                        <div class="modal_product_code">
+                            Product Code : <div class="product-code" id="prCode{{ context.id }}">{{ context.product_code }}</div>
+                        </div>
+                        <div class="modal_product_code">
+                            Availabilty : <div class="product-code">{% if context.stock != 0 %}
+                            In Stock {% else %} Out of Stock
+                            {% endif %} </div>
+                        </div>
+                        {% if context.sizes.values %}
+                            <div class="modal_product_code">
+
+                            Size : <div class="product-code">
+                                {% for item in context.sizes.values %}
+                                  <div class="button">
+                                    <input type="radio" value="{{ item.foot_size }}" {% if forloop.counter == 1 %}checked{% endif %} id="{{ forloop.parentloop.counter }}{{ forloop.counter }}" name="{{ context.id }}" />
+                                    <label class="btn btn-default" id="prSize{{ context.id }}" for="{{ forloop.parentloop.counter }}{{ forloop.counter }}">{{ item.foot_size }}</label>
+                                  </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="modal_buttons">
+                            <div class="quantity-control" data-quantity="" id="parent">
+                                <button class="quantity-btn disable_button" onclick="calcMinus()" id="button-minus" data-quantity-minus=""><svg viewBox="0 0 409.6 409.6">
+                                    <g>
+                                      <g>
+                                        <path d="M392.533,187.733H17.067C7.641,187.733,0,195.374,0,204.8s7.641,17.067,17.067,17.067h375.467 c9.426,0,17.067-7.641,17.067-17.067S401.959,187.733,392.533,187.733z" />
+                                      </g>
+                                    </g>
+                                  </svg></button>
+                                <input type="number" class="quantity-input" data-quantity-target  id="qty{{ context.id }}" value="1" name="quantity">
+                                <button class="quantity-btn" data-quantity-plus="" onclick="calcPlus()"><svg viewBox="0 0 426.66667 426.66667">
+                                    <path d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0" /></svg>
+                                </button>
+                            </div>
+                            <div class="add_to_cart">
+                                <div id="{{ context.id }}" class="add-to-cart-btn">Add to Cart</div>
+                            </div>
+                        </div>
+                        <div class="faq_card">
+                            <button type="button" class="collapsible">Description</button>
+                            <div class="content">
+                              <p>{{ context.description }}</p>
+                            </div>
+                        </div>
+                            <div class="faq_card2">
+                                <button type="button" class="collapsible">Note</button>
+                                <div class="content">
+                                    <p>Lorem ipsum...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

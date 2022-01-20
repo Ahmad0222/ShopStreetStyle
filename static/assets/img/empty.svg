@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="759.552" height="659.769" viewBox="0 0 759.552 659.769">
+  <g id="Group_3" data-name="Group 3" transform="translate(-580.314 -210.115)">
+    <g id="Group_1" data-name="Group 1" transform="translate(568.914 192.115)">
+      <circle id="Ellipse_1" data-name="Ellipse 1" cx="58.291" cy="58.291" r="58.291" transform="translate(513.242 559.188)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="58.291" cy="58.291" r="58.291" transform="translate(221.789 559.188)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      <path id="Path_1" data-name="Path 1" d="M30,34H635.494a28.894,28.894,0,0,1,26.959,39.346L546.6,375a58.094,58.094,0,0,1-54.647,37.889h-341c-27.688,0-51.733-19.673-57.562-47.361Z" transform="translate(104.353 88.009)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      <path id="Path_2" data-name="Path 2" d="M133.624,122.009,122.695,66.632C117.594,39.673,93.55,20,65.862,20H13.4" transform="translate(0 0)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      <line id="Line_1" data-name="Line 1" x2="21.859" transform="translate(578.09 209.444)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+      <line id="Line_2" data-name="Line 2" x2="356.301" transform="translate(156.212 209.444)" fill="none" stroke="#00aeef" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="4"/>
+    </g>
+    <g id="Group_2" data-name="Group 2" transform="translate(97 60)">
+      <line id="Line_3" data-name="Line 3" x2="110" y2="99" transform="translate(849.5 430.5)" fill="none" stroke="#707070" stroke-width="5"/>
+      <line id="Line_4" data-name="Line 4" x1="110" y2="99" transform="translate(849.5 430.5)" fill="none" stroke="#707070" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

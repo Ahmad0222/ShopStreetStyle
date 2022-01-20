@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:200");
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
+
+body {
+  background-color: #0f0f1a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.digit-group input {
+  width: 30px;
+  height: 50px;
+  background-color: #18182a;
+  border: none;
+  line-height: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  color: white;
+  margin: 0 2px;
+}
+
+.digit-group .splitter {
+  padding: 0 5px;
+  color: white;
+  font-size: 24px;
+}
+
+.prompt {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+.otp_div{
+  margin: 2rem 5.5rem;
+}
+.otp_button{
+  padding: 0.5rem 2rem;
+  border: none;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  transition: 0.6s;
+  cursor: pointer;
+  border-radius: 25px;
+}
+.otp_button:hover{
+  background-color: black;
+  color: white;
+}

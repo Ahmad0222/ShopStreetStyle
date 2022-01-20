@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Checkout | Shop Street Styles{% endblock %}
+{% block main %}
+    <main class="main-root">
+        <div id="dsn-scrollbar">
+            <section class="product_section">
+                <div class="container">
+                    <div class="product_row">
+                        {% for obj in product %}
+                            <div class="wrapper">
+                            <div class="cont">
+                              <div class="top">
+                                  <a href="products/{{ obj.slug }}" class="image-product">
+                                    <img class="image-product" src="{{ obj.images.url }}" alt="">
+                                  </a>
+                              </div>
+                                <div style="display: none" id="prCode{{ obj.id }}">{{ obj.product_code }}</div>
+                              <div class="bottom" id="pr{{ obj.id }}">
+                                <div class="left">
+                                  <div class="details">
+                                    <div class="product_name-h" id="name{{ obj.id }}">{{ obj.name }}</div>
+                                    <div class="display-flex">
+                                        <span class="rsvp">Rs. &nbsp</span><p class="prices" id="price{{ obj.id }}">{{ obj.price }}</p>
+                                    </div>
+                                  </div>
+                                  <div class="buy cart" id="{{ obj.id }}"><i class="uil uil-shopping-cart-alt cart_icon"></i></div>
+                                </div>
+                                <div class="right">
+                                  <div class="done"><i class="uil uil-check times_icon"></i></div>
+                                  <div class="details">
+                                    <div class="product_name-h">{{ obj.product_code }}</div>
+                                    <p>Added to your cart</p>
+                                  </div>
+                                  <div class="remove removeCart" id="{{ obj.id }}"><i class="uil uil-times times_icon"></i></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="inside">
+                              <div class="icon"><i class="uil uil-info-circle info-icon"></i></div>
+                              <div class="contents">
+                                <div class="info_heading">Description:</div>
+                                  <div class="info_description">{{ obj.description }}</div>
+                                  {% if obj.sizes.values %}
+                                      <div class="info_heading">Sizes Available:</div>
+                                      <div class="info_description">
+                                          {% for item in obj.sizes.values %}
+                                              <div class="button">
+                                                <input type="radio" value="{{ item.foot_size }}" {% if forloop.counter == 1 %}checked{% endif %} id="{{ forloop.parentloop.counter }}{{ forloop.counter }}" name="{{ obj.id }}" />
+                                                <label class="btn btn-default" for="{{ forloop.parentloop.counter }}{{ forloop.counter }}">{{ item.foot_size }}</label>
+                                              </div>
+                                            {% endfor %}
+                                      </div>
+                                  {% endif %}
+
+                                <div class="quantity-control">
+                                <input type="hidden" id="qty{{ obj.id }}" value="1" name="quantity">
+                            </div>
+                              </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="product_modal">
+            <div class="product_modal-content">
+                <div class="product_heading">Shopping Cart</div>
+                <i class="uil uil-times modal_close"></i>
+                <div class="modal_main">
+                    <table class="table table-hover">
+                      <thead id="table_head">
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th class="text-center" scope="col">Size</th>
+                          <th class="text-center" scope="col">Quantity</th>
+                          <th class="text-center" scope="col">Product Code</th>
+                          <th class="text-center" scope="col">Price(PKR)</th>
+                        </tr>
+                      </thead>
+                      <tbody id="shop_items">
+                      </tbody>
+                    </table>
+                </div>
+                    <div id="total_price"></div>
+                <div id="checkout"></div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+
+        let total;
+        if ($.isEmptyObject(cart)) {
+            // If object is empty
+            $('#table_head').remove();
+            mystr = "<p class='empty-cart' >Your cart is empty, please add some items before checking out ! </p>"
+            $('#shop_items').append(mystr);
+        }
+        else {
+            total = 0;
+            for (let item in cart) {
+            let name = cart[item][0];
+            let size = cart[item][1];
+            let prCode = cart[item][2];
+            let qty = cart[item][3];
+            let price = parseFloat(cart[item][4]);
+            console.log(price)
+                total = price + total;
+                mystr = `<tr><th scope="row">${name}</th>
+                          <td class="text-center">${size}</td>
+                          <td class="text-center">${qty}</td>
+                          <td class="text-center">${prCode}</td>
+                          <td class="text-center">Rs. ${price}.00</td></tr>`
+            $('#shop_items').append(mystr);
+            }
+            totalPr = `<div class="total_amount">Total Amount : <strong>Rs. ${total}.00</strong></div>`
+            $('#total_price').append(totalPr);
+
+            checkout = `<div class="cart_buttons"><a class="clear_cart clearCart">Clear Cart</a><a href="/checkout" class="checkout_button">Checkout</a></div>`
+            $('#checkout').append(checkout);
+        }
+        $('.clearCart').click(function(){
+            localStorage.clear();
+            document.location="/products"
+        });
+    </script>
+{% endblock %}

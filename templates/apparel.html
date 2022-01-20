@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Apperals | Shop Street Styles{% endblock %}
+{% block main %}
+    <main class="main-root">
+        <div id="dsn-scrollbar">
+            <section class="product_section">
+                <div class="container">
+                    <div class="product_row">
+                        {% for obj in product %}
+                            <div class="wrapper">
+                            <div class="cont">
+                              <div class="top">
+                                  <a href="products/{{ obj.slug }}" class="image-product">
+                                    <img class="image-product" src="{{ obj.images.url }}" alt="">
+                                  </a>
+                              </div>
+                                <div style="display: none" id="prCode{{ obj.id }}">{{ obj.product_code }}</div>
+                              <div class="bottom" id="pr{{ obj.id }}">
+                                <div class="left">
+                                  <div class="details">
+                                    <div class="product_name-h" id="name{{ obj.id }}">{{ obj.name }}</div>
+                                    <div class="display-flex">
+                                        <span class="rsvp">Rs. &nbsp</span><p class="prices" id="price{{ obj.id }}">{{ obj.price }}</p>
+                                    </div>
+                                  </div>
+                                  <div class="buy cart" id="{{ obj.id }}"><i class="uil uil-shopping-cart-alt cart_icon"></i></div>
+                                </div>
+                                <div class="right">
+                                  <div class="done"><i class="uil uil-check times_icon"></i></div>
+                                  <div class="details">
+                                    <div class="product_name-h">{{ obj.product_code }}</div>
+                                    <p>Added to your cart</p>
+                                  </div>
+                                  <div class="remove removeCart" id="{{ obj.id }}"><i class="uil uil-times times_icon"></i></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="inside">
+                              <div class="icon"><i class="uil uil-info-circle info-icon"></i></div>
+                              <div class="contents">
+                                <div class="info_heading">Description:</div>
+                                  <div class="info_description">{{ obj.description }}</div>
+                                  <div class="info_heading">Sizes Available:</div>
+                                  <div class="info_description">
+                                      {% for item in obj.sizes.values %}
+                                          <div class="button">
+                                            <input type="radio" value="{{ item.foot_size }}" {% if forloop.counter == 1 %}checked{% endif %} id="{{ forloop.parentloop.counter }}{{ forloop.counter }}" name="{{ obj.id }}" />
+                                            <label class="btn btn-default" for="{{ forloop.parentloop.counter }}{{ forloop.counter }}">{{ item.foot_size }}</label>
+                                          </div>
+                                        {% endfor %}
+                                  </div>
+                                <div class="quantity-control">
+                                <input type="hidden" id="qty{{ obj.id }}" value="1" name="quantity">
+                            </div>
+                              </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="product_modal">
+            <div class="product_modal-content">
+                <div class="product_heading">Shopping Cart</div>
+                <i class="uil uil-times modal_close"></i>
+                <div class="modal_main">
+                    <table class="table table-hover">
+                      <thead id="table_head">
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th class="text-center" scope="col">Size</th>
+                          <th class="text-center" scope="col">Quantity</th>
+                          <th class="text-center" scope="col">Product Code</th>
+                          <th class="text-center" scope="col">Price(PKR)</th>
+                        </tr>
+                      </thead>
+                      <tbody id="shop_items">
+                      </tbody>
+                    </table>
+                </div>
+                    <div id="total_price"></div>
+                <div id="checkout"></div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

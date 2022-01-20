@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Cart | Shop Street Styles{% endblock %}
+{% block main %}
+    <main class="main-root">
+        <div class="container">
+            <div class="product_modal-content">
+                <div class="product_heading">Shopping Cart</div>
+                <div class="modal_main">
+                    <table class="table table-hover">
+                      <thead id="table_head">
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th class="text-center" scope="col">Size</th>
+                          <th class="text-center" scope="col">Quantity</th>
+                          <th class="text-center" scope="col">Product Code</th>
+                          <th class="text-center" scope="col">Price(PKR)</th>
+                        </tr>
+                      </thead>
+                      <tbody id="shop_items">
+                      </tbody>
+                    </table>
+                </div>
+                    <div id="total_price"></div>
+                <div id="checkout"></div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+
+        let total;
+        if ($.isEmptyObject(cart)) {
+            // If object is empty
+            $('#table_head').remove();
+            mystr = "<p class='empty-cart' >Your cart is empty, please add some items before checking out ! </p>"
+            $('#shop_items').append(mystr);
+        }
+        else {
+            total = 0;
+            for (let item in cart) {
+            let name = cart[item][0];
+            let size = cart[item][1];
+            let prCode = cart[item][2];
+            let qty = cart[item][3];
+            let price = parseFloat(cart[item][4]);
+            console.log(price)
+                total = price + total;
+                mystr = `<tr><th scope="row">${name}</th>
+                          <td class="text-center">${size}</td>
+                          <td class="text-center">${qty}</td>
+                          <td class="text-center">${prCode}</td>
+                          <td class="text-center">Rs. ${price}.00</td></tr>`
+            $('#shop_items').append(mystr);
+            }
+            totalPr = `<div class="total_amount">Total Amount : <strong>Rs. ${total}.00</strong></div>`
+            $('#total_price').append(totalPr);
+
+            checkout = `<div class="cart_buttons"><a class="clear_cart clearCart">Clear Cart</a><a href="/checkout" class="checkout_button">Checkout</a></div>`
+            $('#checkout').append(checkout);
+        }
+        $('.clearCart').click(function(){
+            localStorage.clear();
+            document.location="/products"
+        });
+    </script>
+{% endblock %}

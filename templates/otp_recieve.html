@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}OTP | Shop Street Styles{% endblock %}
+{% block main %}
+<main class="main-body">
+
+    <div class="prompt">
+        Enter the OTP send to your <br> registered E-mail!
+    </div>
+    <form action="/signup/otp-confirmed" method="POST" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+        {% csrf_token %}
+        <input type="text" id="digit-1" name="digit-1" data-next="digit-2" autocomplete="off" />
+        <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" autocomplete="off" />
+        <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" autocomplete="off" />
+        <span class="splitter">&ndash;</span>
+        <input type="text" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" autocomplete="off" />
+        <input type="text" id="digit-5" name="digit-5" data-next="digit-6" data-previous="digit-4" autocomplete="off" />
+        <input type="text" id="digit-6" name="digit-6" data-previous="digit-5" autocomplete="off" />
+        <div class="otp_div">
+            <button class="otp_button" type="submit">Send</button>
+        </div>
+    </form>
+    <div style="color: white" class="resend_otp">If you would not received OTP!
+    <a class="otp_link" href="/signup/resend-otp">Resend OTP</a></div>
+
+</main>
+{% endblock %}

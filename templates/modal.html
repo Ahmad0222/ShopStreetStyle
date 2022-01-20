@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="discrption" content="" />
+    <meta name="keyword" content="keyword1, keyword2" />
+
+    <!--  Title -->
+    <title>HOME | SHOP STREET STYLES</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.jpg' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'assets/img/favicon.jpg" type="image/x-icon' %}" />
+
+    <!-- custom styles (optional) -->
+    <link href="{% static 'assets/css/plugins.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/swiper-bundle.min.css' %}">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+        @font-face {
+        font-family: 'NeutraText';
+        src: url('{% static '/assets/fonts/Neutraface2Text-Book.woff' %}') format('woff'),
+        url('{% static '/assets/fonts/Neutraface2Text-Book.woff2' %}') format('woff2');
+}
+    </style>
+
+</head>
+
+<body class="v-light hamburger-menu dsn-effect-scroll dsn-ajax" data-dsn-mousemove="true">
+    <div data-dsn-temp="light"></div>
+        <div class="container">
+            <div class="product_modal-content">
+                <div class="modal_main">
+                    <div class="modal_img">
+                        <img src="{{ context.images.url }}" alt="" class="modal_img_it">
+                    </div>
+                    <div class="modal_content">
+                        <div class="product_category">{{ context.category }}</div>
+                        <div class="modal_product_name">{{ context.name }}</div>
+                        <div class="modal_product-price"><div>Rs.&nbsp</div><div id="productPrice" >{{ context.price }}</div></div>
+                        <div class="modal_line"></div>
+                        <div class="modal_product_code">
+                            Product Code : <div class="product-code">{{ context.product_code }}</div>
+                        </div>
+                        <div class="modal_product_code">
+                            Availabilty : <div class="product-code">In Stock</div>
+                        </div>
+                        <div class="modal_product_code">
+                            Size : <div class="product-code">
+                                <ul class="modal_product_size-list">
+                                    <li class="product_li">{% for i in context.sizes.all %}{{ i.context.sizes }}{% endfor %}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modal_buttons">
+                            <div class="quantity-control" data-quantity="">
+                                <button class="quantity-btn" onclick="calcMinus()" id="button-minus" data-quantity-minus=""><svg viewBox="0 0 409.6 409.6">
+                                    <g>
+                                      <g>
+                                        <path d="M392.533,187.733H17.067C7.641,187.733,0,195.374,0,204.8s7.641,17.067,17.067,17.067h375.467 c9.426,0,17.067-7.641,17.067-17.067S401.959,187.733,392.533,187.733z" />
+                                      </g>
+                                    </g>
+                                  </svg></button>
+                                <input type="number" class="quantity-input" onChange="calcPlus()" data-quantity-target="" value="1" step="1" min="1" max="" id="quantity" name="quantity">
+                                <button class="quantity-btn" data-quantity-plus="" onclick="calcPlus()"><svg viewBox="0 0 426.66667 426.66667">
+                                    <path d="m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031 9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0 11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031 21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594 21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0" /></svg>
+                                </button>
+                            </div>
+                            <div class="add_to_cart">
+                                <a href="" class="add-to-cart-btn">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="product_desc-heading">Description:</div>
+                        <div class="modal_product_desc">{{ context.description }}</div>
+                        <div class="modal_line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- cursor -->
+    <div class="cursor">
+        <div class="cursor-helper cursor-link"></div>
+    </div>
+    <!-- End cursor -->
+
+    <!-- Optional JavaScript -->
+    <script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins.js' %}"></script>
+    <script src="{% static 'assets/js/dsn-grid.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/index.js' %}"></script>
+</body>
+
+</html>
