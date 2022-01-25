@@ -28,8 +28,7 @@ class Product(models.Model):
     description = models.TextField(max_length=500)
     note = models.TextField(max_length=250)
     product_code = models.CharField(max_length=50)
-    stock = models.PositiveIntegerField()
-    sizes = models.ManyToManyField(size, blank=True)
+    sizes = models.ManyToManyField(size, through='stock', blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     images = models.ImageField(upload_to='Products')
     best_selling = models.BooleanField(default=False)
@@ -44,5 +43,16 @@ class Product(models.Model):
         verbose_name_plural = 'Products'
         ordering = ["-id"]
 
+class stock(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    size = models.ForeignKey('size', on_delete=models.CASCADE)
+    stock = models.PositiveIntegerField()
 
+    def __str__(self):
+        return  self.product
+
+    class Meta:
+        verbose_name = 'Stock'
+        verbose_name_plural = 'Stock'
+        ordering = ["-size"]
 
